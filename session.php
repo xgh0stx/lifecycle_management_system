@@ -120,7 +120,56 @@ class Session {
 		   
 	   }
 	
+	    
+	    /*destroy function
+	     * */
 	
+	    public function _destroy($id) {
+			// set query 
+			$this->db->query('DELETE FROM sessions WHERE id = :id');
+			
+			// bind data
+			$this->db->bind(':id', $id);
+			
+			// attempt execution
+			// if successful
+			if($this->db->execute()) {
+				// return true
+				return true;
+			}
+			
+			// return false
+			return false;
+			
+		}
+		
+		
+		/*
+		 * garbage collection
+		 **/
+		
+		public function _gc($max) {
+			// calculate what is to be deemed old
+			$old = time() - $max;
+			
+			// set query
+			$this->db->query('DELETE * FROM sessions WHERE access < :old');
+			
+			// bind data
+			$this->db->bind(':old', $old);
+			
+			// attempt execution
+			if($this->db->execute()) {
+			   // return true
+			   return true;
+			}
+			
+			// return false
+			return false;
+		
+		}
+		
+		
 }
 
 ?>
