@@ -31,6 +31,7 @@ class Session {
 		
 	}
 	
+	
 	/*
 	 * open function
 	 * */
@@ -46,6 +47,23 @@ class Session {
 	       return false;
 		
 	}
+	
+	
+	/*
+	 * close function
+	 * */
+	 
+	 public function _close() {
+		// close the database connection
+		// if successful
+		if ($this->db->close()) {
+			// return true
+			return true;
+		}
+		// return false
+		return false;
+		 
+	 }
 	
 }
 
