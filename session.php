@@ -67,7 +67,7 @@ class Session {
 	 
 	 
 	 /*
-	  * read
+	  * read function
 	  * */
 	  
 	  public function _read($id) {
@@ -89,8 +89,36 @@ class Session {
 			 return '';  
 		   }
 	  }
+	  
+	  
+	  
+	  /*
+	   *write function 
+	   * */
 	 
-	 
+	   public function _write($id, $data) {
+		   // create time stamp
+		   $access = time();
+		   
+		   // set query
+		   $this->db->query('REPLACE INTO session VALUES (:id, :access, :data)');
+		   
+		   // bind data
+		   $this->db->bind(':id', $id);
+		   $this->db->bind(':access', $access);
+		   $this->db->bind(':data', $data);
+		   
+		   // attempt execution
+		   // if successful
+		   if($this->db->execute()){
+			   //return true
+			   return true;
+		   }
+		   
+		   // return false
+		   return false;
+		   
+	   }
 	
 	
 }
