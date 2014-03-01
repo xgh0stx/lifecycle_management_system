@@ -64,6 +64,34 @@ class Session {
 		return false;
 		 
 	 }
+	 
+	 
+	 /*
+	  * read
+	  * */
+	  
+	  public function _read($id) {
+		  // set query
+		  $this->db->query('SELECT data FROM session WHERE id= :id');
+		  
+		  $this->db->bind(':id', $id);
+		  
+		  // attempt execution
+		  // if successful
+		  if($this->db->execute()){
+			 // save returned row
+			 $row = $this->db->single();
+			 // return the data
+			 return $row['data']; 
+			  
+		  }else{
+			 // return an empty string
+			 return '';  
+		   }
+	  }
+	 
+	 
+	
 	
 }
 
