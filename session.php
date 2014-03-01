@@ -31,6 +31,22 @@ class Session {
 		
 	}
 	
+	/*
+	 * open function
+	 * */
+	
+	
+	public function _open() {
+	   // if successful
+	   if($this->db) {
+		   // return true
+		   return true;
+	   }	
+	       //return false
+	       return false;
+		
+	}
+	
 }
 
 ?>
